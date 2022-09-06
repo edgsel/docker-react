@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true edmorra/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'Dockerreact'
+  env: 'Dockerreact-env'
+  bucket_name: elasticbeanstalk-us-east-1-457926681863
+  bucket_path: 'Dockerreact'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
